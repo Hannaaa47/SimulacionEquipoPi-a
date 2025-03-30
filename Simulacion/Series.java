@@ -6,7 +6,7 @@ public class Series
     public static void main(String[] args) {
         // Leer archivo usando ManipularCSV
         ManipularCSV csv = new ManipularCSV();
-        csv.leerArchivo("/workspaces/SimulacionEquipoPi-a/Simulacion/Datos.csv");
+        csv.leerArchivo("Simulacion/Datos.csv");
         
         ArrayList<Double> valores = csv.ListaValores();
         

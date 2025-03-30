@@ -1,5 +1,4 @@
 package Simulacion;
-import java.util.ArrayList;
 public class Chi_Cuadrada {
 	public static void main(String[] args) {
 		double [] tablaChi = {3.841, 5.991, 7.815, 9.488, 11.070, 
@@ -16,7 +15,7 @@ public class Chi_Cuadrada {
 	
 	public static void ChiCuadrada (double [] tablaChi) {
 		ManipularCSV archivo = new ManipularCSV(); // Crear objeto
-        archivo.leerArchivo("/workspaces/SimulacionEquipoPi-a/Simulacion/Datos.csv"); // Llamar al método
+        archivo.leerArchivo("Simulacion/Datos.csv"); // Llamar al método
         
 		int n = archivo.getContador(),observados=0;
 		double valorInferior=0, valorSuperior=0, intervalo=0, x2=0, k, e;

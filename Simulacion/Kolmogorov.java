@@ -8,7 +8,7 @@ public class Kolmogorov {
     public static void main(String[] args) {
         //creo mis variables
         ManipularCSV archivo = new ManipularCSV(); // Crear objeto
-        archivo.leerArchivo("/workspaces/SimulacionEquipoPi-a/Simulacion/Datos.csv"); 
+        archivo.leerArchivo("Simulacion/Datos.csv"); 
         ArrayList<Double> serie = archivo.ListaValores(); // Usar ArrayList directamente
         int n = archivo.getContador();
         Scanner input = new Scanner(System.in);
