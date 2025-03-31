@@ -49,11 +49,6 @@ public class Kolmogorov {
     }
 
     static void imprimirResultados(ArrayList<Double> serie, double[] fi, double[] Ui, int n, double a, double fn, double d1, double d2) {
-        System.out.println("n=" + n);
-        System.out.println("Error= " + (a * 100));
-        System.out.printf("Fn= %.5f%n", fn);
-        System.out.printf("D1= %.5f%n", d1);
-        System.out.printf("D2= %.5f%n", d2);
         System.out.println("--------------------------------------------------");
         System.out.println("| i     | Valor      | Fi(Ui)     | Ui - Fi(Ui)  |");
         System.out.println("--------------------------------------------------");
@@ -61,11 +56,15 @@ public class Kolmogorov {
             System.out.printf("| %-5d | %-10.5f | %-10.5f | %-12.5f |%n", (i + 1), serie.get(i), fi[i], Ui[i]);
         }
         System.out.println("--------------------------------------------------");
-        System.out.println("\nConclusión");
+        System.out.println("n=" + n);
+        System.out.println("Error= " + (a * 100));
+        System.out.printf("Fn= %.5f%n", fn);
+        System.out.printf("D1= %.5f%n", d1);
+        System.out.printf("D2= %.5f%n", d2);
         if (d1 < d2) {
-            System.out.println("No hay evidencia suficiente para decir que estos numeros no estan distribuidos uniformemente");
+            System.out.println("Conclusion: \nNo hay evidencia suficiente para decir que estos datos no estan distribuidos uniformemente");
         } else {
-            System.out.println("Hay evidencia suficiente para decir que estos numeros no estan distribuidos uniformemente");
+            System.out.println("Conclusion: \nHay evidencia suficiente para decir que estos datos no estan distribuidos uniformemente");
         }
     }
 }

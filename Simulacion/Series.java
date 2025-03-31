@@ -179,8 +179,12 @@ public class Series
             // Conclusión
             if (chi2 < tablaChi[(int)n-1]) {
                 System.out.println("Conclusión: X² < X²(" + in  + ", 5%) → Se acepta H0");
+                System.out.println("Conclusion: \nNo hay evidencia suficiente para decir que estos datos no estan distribuidos uniformemente");
+            
             } else {
                 System.out.println("Conclusión: X² ≥ X²(" + in  + ", 5%) → Se rechaza H0");
+                System.out.println("Conclusion: \nHay evidencia suficiente para decir que estos datos no estan distribuidos uniformemente");
+            
             }
         }
     }

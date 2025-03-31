@@ -146,12 +146,12 @@ public class Distancias {
 	        System.out.println("No se puede evaluar H₀: grados de libertad fuera de tabla.");
 	    } else {
 	        double chiCritico = tablaChi[gradosLibertad - 1];
-	        System.out.printf("χ² crítico (gl = %d, α = 0.05) = %.3f%n", gradosLibertad, chiCritico);
-	        if (chiCuadrado < chiCritico) {
-	            System.out.println("Se acepta H₀ (distribución compatible)");
-	        } else {
-	            System.out.println("Se rechaza H₀ (no es aleatoria)");
-	        }
+		        System.out.printf("χ² crítico (gl = %d, α = 0.05) = %.3f%n", gradosLibertad, chiCritico);
+		        if (chiCuadrado < chiCritico) {
+		            System.out.println("Conclusion: \nNo hay evidencia suficiente para decir que estos datos no estan distribuidos uniformemente");
+		        } else {
+		            System.out.println("Conclusion: \nHay evidencia suficiente para decir que estos datos no estan distribuidos uniformemente");
+		        }
 	    }
 	}
 }

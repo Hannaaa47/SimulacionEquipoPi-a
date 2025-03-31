@@ -15,34 +15,42 @@ public class Menu {
             55.758, 67.500, 79.1, 124.3};
         int opcion;
         do {
-            System.out.println("\n──────────────────୨ৎ──────────────────────");
+            System.out.println("\n────────────────────────────────────────");
+        	System.out.println("            NUMEROS ALEATORIOS ");
+            System.out.println("────────────────────────────────────────");
+            System.out.println("-----# Prueba de bondad de ajuste #-----");
             System.out.println("\t1. Prueba Ji-Cuadrado.");
             System.out.println("\t2. Prueba Kolmogorov-Smirnov.");
+            System.out.println("-------# Prueba de aleatoriedad #-------");
             System.out.println("\t3. Prueba de las Series.");
             System.out.println("\t4. Prueba de las Distancias.");
             System.out.println("\t0. Salir");
-            System.out.println("───────────────────────────────────────────");
+            System.out.println("────────────────────────────────────────");
             System.out.print("Elige una opción: ");
             opcion = sc.nextInt();
 
             switch (opcion) {
                 case 1:
                 	//Prueba Ji-Cuadrado.
-                    Chi_Cuadrada c = new Chi_Cuadrada();
-                    c.ChiCuadrada(tablaChi, rutaArchivo);
+                    System.out.println("\n----------# JI-CUADRADO #----------");
+                    JiCuadrada c = new JiCuadrada();
+                    c.Ji_Cuadrada(tablaChi, rutaArchivo);
                     break;
                 case 2:
                 	//Prueba Kolmogorov-Smirnov.
+                    System.out.println("\n----------# KOLMOGOROV #----------");
                     Kolmogorov k = new Kolmogorov();
                     k.KolmogorovMain(sc, rutaArchivo);
                     break;
                 case 3:
                 	//Prueba de las Series.
+                    System.out.println("\n----------# SERIES #----------");
                     Series s = new Series();
                     s.SeriesMain(rutaArchivo, tablaChi,sc);
                     break;
                 case 4:
                     //Prueba de las Distancias.
+                    System.out.println("\n----------# DISTANCIAS #----------");
                     Distancias d = new Distancias();
                     d.prueba_Distancia(tablaChi,sc,rutaArchivo);
                     break;

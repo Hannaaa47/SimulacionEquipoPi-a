@@ -1,7 +1,7 @@
 package Simulacion;
-public class Chi_Cuadrada {
+public class JiCuadrada {
 	
-	public void ChiCuadrada (double [] tablaChi, String rutaArchivo) {
+	public void Ji_Cuadrada (double [] tablaChi, String rutaArchivo) {
 		ManipularCSV archivo = new ManipularCSV(); // Crear objeto
         archivo.leerArchivo(rutaArchivo); // Llamar al método
         
@@ -43,8 +43,8 @@ public class Chi_Cuadrada {
     		valorInferior=valorSuperior;
     		valorSuperior=valorInferior+intervalo;
     		System.out.printf("| %-5.3f | %-5d | %-5.1f | %-7.1f | %-10.4f |\n", iv[i], o[i], e, o_e[i], o_e_cuadrada[i]);
-    		System.out.println("------------------------------------------------");
         }
+		System.out.println("------------------------------------------------");
         System.out.println("Valor de X2: " + x2);
         int gradosLibertad = (int)k-1;
         System.out.println("Grados de libertad: " + gradosLibertad);
@@ -53,9 +53,9 @@ public class Chi_Cuadrada {
         	if(i+1==gradosLibertad) {
         		System.out.println("X2: (" + gradosLibertad + ", 5%): " + tablaChi[i]);
         		if(tablaChi[i]>x2) {
-        			System.out.println("\nNO existe evidencia suficiente para sustentar que los datos NO estan distribuidos uniformemente");
+        			System.out.println("\nConclusion: \nNo hay evidencia suficiente para decir que estos datos no estan distribuidos uniformemente");
         		}else {
-        			System.out.println("\nExiste evidencia suficiente para sustentar que los datos NO estan distribuidos uniformemente");
+        			System.out.println("\nConclusion: \nHay evidencia suficiente para decir que estos datos no estan distribuidos uniformemente");
         		}
         	}
         }
