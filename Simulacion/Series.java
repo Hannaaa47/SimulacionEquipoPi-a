@@ -1,10 +1,11 @@
 package Simulacion;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Series
 {
-    public void SeriesMain(String rutaArchivo, double tablaChi[], Scanner sc) {
+    public void SeriesMain(String rutaArchivo, HashMap<Integer, Double> tablaChi, Scanner sc) {
         // Leer archivo usando ManipularCSV
         ManipularCSV csv = new ManipularCSV();
         csv.leerArchivo(rutaArchivo);
@@ -98,7 +99,7 @@ public class Series
             return chi2;
         }
 
-        public void mostrarResultados(double []tablaChi) {
+        public void mostrarResultados(HashMap<Integer, Double> tablaChi) {
             // Mostrar tabla Oij
             System.out.println("Tabla de frecuencias observadas (Oij):");
             
@@ -169,15 +170,15 @@ public class Series
 
             // Calcular y mostrar X²
             double chi2 = calcularChiCuadrado(); //x calculado
-            double in =Math.pow(n, 2) - 1;
+            int in =(int)Math.pow(n, 2) - 1;
             System.out.println("\nResultados de la prueba:");
             System.out.println("N = " + N);
             System.out.println("n = " + n);
             System.out.printf("X² calculado = %.4f\n", chi2);
-            System.out.println("X² crítico (" + in  + " 5%) = " +  tablaChi[(int)in-1]); //x tabla 
+            System.out.println("X² crítico (" + in  + " 5%) = " +  tablaChi.get(in)); //x tabla 
             
             // Conclusión
-            if (chi2 < tablaChi[(int)n-1]) {
+            if (chi2 < tablaChi.get(in)) {
                 System.out.println("Conclusión: X² < X²(" + in  + ", 5%) → Se acepta H0");
                 System.out.println("Conclusion: \nNo hay evidencia suficiente para decir que estos datos no estan distribuidos uniformemente");
             

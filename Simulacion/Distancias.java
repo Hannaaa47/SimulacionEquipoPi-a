@@ -1,11 +1,12 @@
 package Simulacion;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Distancias {
 	
 	//metodo Prueba de Aleatoriedad (independencia).
-	public void prueba_Distancia(double[] tablaChi, Scanner sc, String rutaArchivo) {
+	public void prueba_Distancia(HashMap<Integer, Double> tablaChi, Scanner sc, String rutaArchivo) {
 		ManipularCSV archivo = new ManipularCSV(); // Crear objeto
         archivo.leerArchivo(rutaArchivo); 
         ArrayList<Double> datos = archivo.ListaValores(); 
@@ -142,16 +143,14 @@ public class Distancias {
 	    System.out.printf("∑Pi = %-8.4f ∑Oi = %-4d ∑Ei = %-6.2f ∑χ² = %.4f%n", sumaProbabilidades, totalObservado, (double) N, chiCuadrado);
 
 	    int gradosLibertad = agrupamientoDesde;
-	    if (gradosLibertad >= tablaChi.length) {
-	        System.out.println("No se puede evaluar H₀: grados de libertad fuera de tabla.");
-	    } else {
-	        double chiCritico = tablaChi[gradosLibertad - 1];
-		        System.out.printf("χ² crítico (gl = %d, α = 0.05) = %.3f%n", gradosLibertad, chiCritico);
-		        if (chiCuadrado < chiCritico) {
-		            System.out.println("Conclusion: \nNo hay evidencia suficiente para decir que estos datos no estan distribuidos uniformemente");
-		        } else {
-		            System.out.println("Conclusion: \nHay evidencia suficiente para decir que estos datos no estan distribuidos uniformemente");
-		        }
-	    }
+	    
+		double chiCritico = tablaChi.get(gradosLibertad);
+		System.out.printf("χ² crítico (gl = %d, α = 0.05) = %.3f%n", gradosLibertad, chiCritico);
+		if (chiCuadrado < chiCritico) {
+			System.out.println("Conclusion: \nNo hay evidencia suficiente para decir que estos datos no estan distribuidos uniformemente");
+		} else {
+			System.out.println("Conclusion: \nHay evidencia suficiente para decir que estos datos no estan distribuidos uniformemente");
+		}
+	    
 	}
 }

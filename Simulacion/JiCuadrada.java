@@ -1,7 +1,10 @@
 package Simulacion;
+
+import java.util.HashMap;
+
 public class JiCuadrada {
 	
-	public void Ji_Cuadrada (double [] tablaChi, String rutaArchivo) {
+	public void Ji_Cuadrada (HashMap<Integer, Double> tablaChi, String rutaArchivo) {
 		ManipularCSV archivo = new ManipularCSV(); // Crear objeto
         archivo.leerArchivo(rutaArchivo); // Llamar al método
         
@@ -31,7 +34,7 @@ public class JiCuadrada {
         for(int i=0; i<k; i++) {
         	observados=0;
         	for(int j=0; j<archivo.ListaValores().size(); j++) {
-        		if(archivo.ListaValores().get(j)>=valorInferior && archivo.ListaValores().get(j)<valorSuperior) {
+        		if(archivo.ListaValores().get(j)>valorInferior && archivo.ListaValores().get(j)<=valorSuperior) {
         			observados++;
         		}
         	}
@@ -48,16 +51,16 @@ public class JiCuadrada {
         System.out.println("Valor de X2: " + x2);
         int gradosLibertad = (int)k-1;
         System.out.println("Grados de libertad: " + gradosLibertad);
-        for(int i=0; i<=tablaChi.length; i++)
-        {
-        	if(i+1==gradosLibertad) {
-        		System.out.println("X2: (" + gradosLibertad + ", 5%): " + tablaChi[i]);
-        		if(tablaChi[i]>x2) {
-        			System.out.println("\nConclusion: \nNo hay evidencia suficiente para decir que estos datos no estan distribuidos uniformemente");
-        		}else {
-        			System.out.println("\nConclusion: \nHay evidencia suficiente para decir que estos datos no estan distribuidos uniformemente");
-        		}
-        	}
-        }
+
+		
+		double x1= tablaChi.get(gradosLibertad);
+		System.out.println("X2: (" + gradosLibertad + ", 5%): " + x1 );
+		if(tablaChi.get(gradosLibertad)>x2) {
+			System.out.println("\nConclusion: \nNo hay evidencia suficiente para decir que estos datos no estan distribuidos uniformemente");
+		}else {
+			System.out.println("\nConclusion: \nHay evidencia suficiente para decir que estos datos no estan distribuidos uniformemente");
+		}
+		
+        
 	}
 }
