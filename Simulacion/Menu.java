@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Menu {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String rutaArchivo = "Simulacion/Datos.csv";
+        String rutaArchivo = "Simulacion/Datos chi.csv";
         double [] tablaChi = {3.841, 5.991, 7.815, 9.488, 11.070, 
             12.592,	14.067, 15.507,	16.919,	18.307, 
             19.675, 21.026, 22.362, 23.685, 24.996,
@@ -39,7 +39,7 @@ public class Menu {
                 case 3:
                 	//Prueba de las Series.
                     Series s = new Series();
-                    s.SeriesMain(rutaArchivo);
+                    s.SeriesMain(rutaArchivo, tablaChi);
                     break;
                 case 4:
                     //Prueba de las Distancias.

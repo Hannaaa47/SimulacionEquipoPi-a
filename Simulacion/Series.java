@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Series
 {
-    public void SeriesMain(String rutaArchivo) {
+    public void SeriesMain(String rutaArchivo, double tablaChi[]) {
         // Leer archivo usando ManipularCSV
         ManipularCSV csv = new ManipularCSV();
         csv.leerArchivo(rutaArchivo);
@@ -13,30 +13,37 @@ public class Series
         // Realizar prueba de series
         PruebaSerie prueba = new PruebaSerie(valores);
         prueba.formarPares();
-        prueba.mostrarResultados();
+        prueba.mostrarResultados(tablaChi);
     }
 
     public static class PruebaSerie {
         private ArrayList<Double> valores; 
         private int N;
         private int n = 5; // Número de intervalos
-        private int[][] oij; //MATRIZ 5 X 5
+        private int[][] oij; 
         private double Eij;
-        private final double VALOR_CRITICO = 36.41; // Valor crítico para 24 grados de libertad y α=0.05
 
         public PruebaSerie(ArrayList<Double> valores) {
             this.valores = valores;
-            this.N = valores.size() - 1;
+            this.N = valores.size();
             this.oij = new int[n][n];
             this.Eij = (double)N / (n * n); // Calcula la frecuencia esperada
         }
 
         public void formarPares() //METODO QUE RECORRE LA LISTA DE VALORES
         {
-            for (int i = 0; i < N; i++) {
-                double ui = valores.get(i);
-                double ui1 = valores.get(i + 1);
+            double ui;
+            double ui1;
+            for (int i = 0; i < N; i++) { 
+                //forma pares
+                ui = valores.get(i);
+                if (i == N-1){
+                    ui1 = valores.get(0);
+                } else {
+                    ui1 = valores.get(i + 1);
+                }
 
+                //los acomoda en los obvservados
                 int fila = (int) (ui * n);
                 int columna = (int) (ui1 * n);
 
@@ -60,7 +67,7 @@ public class Series
             return chi2;
         }
 
-        public void mostrarResultados() {
+        public void mostrarResultados(double []tablaChi) {
             // Mostrar tabla Oij
             System.out.println("Tabla de frecuencias observadas (Oij):");
             System.out.println("-----------------------------------");
@@ -72,28 +79,28 @@ public class Series
             }
             System.out.println();
             
-            // Filas de la tabla
-            for (int i = 0; i < n; i++) {
+            // Filas de la tabla (orden inverso)
+            for (int i = n - 1; i >= 0; i--) { // Cambio aquí: iterar en orden inverso
                 System.out.printf("%.1f | ", (i + 1) / (double) n);
                 for (int j = 0; j < n; j++) {
                     System.out.printf("%3d ", oij[i][j]);
                 }
                 System.out.println();
             }
-            
             // Calcular y mostrar X²
-            double chi2 = calcularChiCuadrado();
+            double chi2 = calcularChiCuadrado(); //x calculado
+            double in =Math.pow(n, 2) - 1;
             System.out.println("\nResultados de la prueba:");
             System.out.println("N = " + N);
             System.out.println("n = " + n);
             System.out.printf("X2 calculado = %.4f\n", chi2);
-            System.out.println("X2 crítico (24, 5%) = " + VALOR_CRITICO);
+            System.out.println("X2 crítico (" + in  + " 5%) = " +  tablaChi[(int)in-1]); //x tabla 
             
             // Conclusión
-            if (chi2 < VALOR_CRITICO) {
-                System.out.println("Conclusión: X2 < X²(24, 5%) → Se acepta H0");
+            if (chi2 < tablaChi[(int)n-1]) {
+                System.out.println("Conclusión: X2 < X²(" + in  + ", 5%) → Se acepta H0");
             } else {
-                System.out.println("Conclusión: X2 ≥ X²(24, 5%) → Se rechaza H0");
+                System.out.println("Conclusión: X2 ≥ X²(" + in  + ", 5%) → Se rechaza H0");
             }
         }
     }
