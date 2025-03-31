@@ -31,7 +31,7 @@ public class JiCuadrada {
         for(int i=0; i<k; i++) {
         	observados=0;
         	for(int j=0; j<archivo.ListaValores().size(); j++) {
-        		if(archivo.ListaValores().get(j)>=valorInferior && archivo.ListaValores().get(j)<=valorSuperior) {
+        		if(archivo.ListaValores().get(j)>=valorInferior && archivo.ListaValores().get(j)<valorSuperior) {
         			observados++;
         		}
         	}
