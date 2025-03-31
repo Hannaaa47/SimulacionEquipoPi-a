@@ -5,13 +5,13 @@ import java.util.Scanner;
 
 public class Kolmogorov {
 
-    public static void main(String[] args) {
+    public void KolmogorovMain(Scanner input, String rutaArchivo) {
         //creo mis variables
         ManipularCSV archivo = new ManipularCSV(); // Crear objeto
-        archivo.leerArchivo("Simulacion/Datos.csv"); 
+        archivo.leerArchivo(rutaArchivo); 
         ArrayList<Double> serie = archivo.ListaValores(); // Usar ArrayList directamente
         int n = archivo.getContador();
-        Scanner input = new Scanner(System.in);
+
         double error;
         double[] fi = new double[n];
         double[] Ui = new double[n];
@@ -19,8 +19,7 @@ public class Kolmogorov {
         //leo el error
         System.out.print("Ingrese el error: ");
         error = input.nextDouble();
-        input.close();
-
+        
         // Ordenar el ArrayList
         Collections.sort(serie); 
 

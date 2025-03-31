@@ -3,32 +3,12 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Distancias {
-	 
-	public static void main(String[] args) {
-		double [] tablaChi = {3.841, 5.991, 7.815, 9.488, 11.070, 
-        		12.592,	14.067, 15.507,	16.919,	18.307, 
-        		19.675, 21.026, 22.362, 23.685, 24.996,
-        		26.296, 27.587, 28.869, 30.144, 31.410,	
-        		32.671, 33.924, 35.172, 36.415, 37.652,
-        		38.885, 40.113, 41.337, 42.557, 43.773,
-        		44.985, 46.194, 47.400, 48.602, 49.802,
-        		55.758, 67.500, 79.1, 124.3};
-		
-		prueba_Distancia(tablaChi);
-		
-    }
 	
 	//metodo Prueba de Aleatoriedad (independencia).
-	public static void prueba_Distancia(double[] tablaChi) {
+	public void prueba_Distancia(double[] tablaChi, Scanner sc, String rutaArchivo) {
 		ManipularCSV archivo = new ManipularCSV(); // Crear objeto
-        archivo.leerArchivo("Simulacion/Datos.csv"); 
+        archivo.leerArchivo(rutaArchivo); 
         ArrayList<Double> datos = archivo.ListaValores(); 
-		Scanner sc = new Scanner(System.in);
-	    
-	    if (datos.isEmpty()) {
-	        System.out.println("No se encontraron datos o el archivo no existe.");
-	        return;
-	    }
 
 	    System.out.println("Ingresa valor de alpha(α): ");
 	    double alpha = sc.nextDouble();
@@ -36,7 +16,7 @@ public class Distancias {
 	    double teta = sc.nextDouble();
 
 	    double beta = alpha + teta;
-	    System.out.println("β = " + beta);
+		System.out.printf("β = %.4f %n", beta);
 	    double pe = teta;
 	    double pf = 1 - teta;
 
@@ -173,6 +153,5 @@ public class Distancias {
 	            System.out.println("Se rechaza H₀ (no es aleatoria)");
 	        }
 	    }
-		sc.close();
 	}
 }

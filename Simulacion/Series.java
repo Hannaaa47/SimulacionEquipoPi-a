@@ -3,10 +3,10 @@ import java.util.ArrayList;
 
 public class Series
 {
-    public static void main(String[] args) {
+    public void SeriesMain(String rutaArchivo) {
         // Leer archivo usando ManipularCSV
         ManipularCSV csv = new ManipularCSV();
-        csv.leerArchivo("Simulacion/Datos.csv");
+        csv.leerArchivo(rutaArchivo);
         
         ArrayList<Double> valores = csv.ListaValores();
         

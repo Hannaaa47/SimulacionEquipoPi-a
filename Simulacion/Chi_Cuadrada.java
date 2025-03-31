@@ -1,29 +1,17 @@
 package Simulacion;
 public class Chi_Cuadrada {
-	public static void main(String[] args) {
-		double [] tablaChi = {3.841, 5.991, 7.815, 9.488, 11.070, 
-        		12.592,	14.067, 15.507,	16.919,	18.307, 
-        		19.675, 21.026, 22.362, 23.685, 24.996,
-        		26.296, 27.587, 28.869, 30.144, 31.410,	
-        		32.671, 33.924, 35.172, 36.415, 37.652,
-        		38.885, 40.113, 41.337, 42.557, 43.773,
-        		44.985, 46.194, 47.400, 48.602, 49.802,
-        		55.758, 67.500, 79.1, 124.3};
-        
-        ChiCuadrada(tablaChi);
-    }
 	
-	public static void ChiCuadrada (double [] tablaChi) {
+	public void ChiCuadrada (double [] tablaChi, String rutaArchivo) {
 		ManipularCSV archivo = new ManipularCSV(); // Crear objeto
-        archivo.leerArchivo("Simulacion/Datos.csv"); // Llamar al método
+        archivo.leerArchivo(rutaArchivo); // Llamar al método
         
 		int n = archivo.getContador(),observados=0;
 		double valorInferior=0, valorSuperior=0, intervalo=0, x2=0, k, e;
         System.out.println("Total de numeros (N): " + n);
         
         //Calcula numero de intervalos
-        //k = Math.round(Math.sqrt(n)); //me saca la raiz y redondea a un numero entero de intervalos
-        k=10; //por si quiero poner los intervalos fijos
+        k = Math.round(Math.sqrt(n)); //me saca la raiz y redondea a un numero entero de intervalos
+        //k=10; //por si quiero poner los intervalos fijos
         System.out.println("Numero de intervalos: " + k);
         
         //creacion de vectores para facilitar el guardado e impresion de los datos
